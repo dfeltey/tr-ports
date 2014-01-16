@@ -1,0 +1,1 @@
+("5.90.0.10" ("3cae805667533fa50626f52d9b012b6c510734c2" . "fc71e8d2397dcecfd1953761e82340f0e73a1f23") (collects #"racket" #"string.rkt") (collects #"racket" #"base.rkt") (collects #"db" #"private" #"generic" #"interfaces.rkt") (collects #"ffi" #"unsafe" #"atomic.rkt") (collects #"racket" #"class.rkt") (collects #"racket" #"runtime-config.rkt"))

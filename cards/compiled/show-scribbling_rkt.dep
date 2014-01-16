@@ -1,0 +1,1 @@
+("5.90.0.10" ("e120aec99a20308330784ac94d2ecec9faf3b76c" . "fb4dc0eb50823243c573222fb587e44d9db8216d") (collects #"scribble" #"tag.rkt") (collects #"setup" #"xref.rkt") (collects #"net" #"sendurl.rkt") (collects #"racket" #"base.rkt") (collects #"scribble" #"xref.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"net" #"url.rkt"))

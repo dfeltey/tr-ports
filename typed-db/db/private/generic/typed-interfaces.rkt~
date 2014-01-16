@@ -1,0 +1,41 @@
+#lang typed/racket 
+
+(require/typed/provide
+
+(define-type ParameterHandler (Symbol Index Any -> Any))
+(define-type TypeDesc (List Boolean (Option Symbol) Any))
+
+(define-type Connection<%>
+  (Class [disconnect (-> Void)]
+         [get-dbsystem (-> (Instance DBSystem<%>))]
+         [query (Symbol Any -> Any)] ; What are statement and QueryResult
+         [prepare (Symbol Any Boolean -> (Instance Prepared-Statement<%>))]
+         [fetch/cursor (Symbol Any Integer -> (Option (Listof (Vectorof Any))))]
+         [get-base (-> (Option (Instance Connection<%>)))]
+         [start-transaction (Symbol Symbol Any Boolean -> Void)]
+         [end-transaction (Symbol (U 'commit 'rollback) Boolean -> Void)]
+         [transaction-status (Symbol -> (U Boolean 'invalid))]
+         [free-statement ((Instance Prepared-Statement<%>) Boolean -> Void)]))
+
+(define-type DBSystem<%>
+  (Class [get-short-name (-> Symbol)]
+         [get-parameter-handlers ((Listof Any) -> (Listof ParameterHandler))]
+         [field-dvecs->typeids ((Listof Any) -> (Listof Any))]
+         [get-known-types (Real -> (Listof Symbol))]
+         [describe-params ((Listof Any) -> (Listof TypeDesc))]
+         [describe-fields ((Listof Any) -> (Listof TypeDesc))]))
+
+(define-type Prepared-Statement<%>
+  (Class [get-handle (-> Any)]
+         [set-handle (Any -> Void)]
+         [get-stmt (-> (Option String))]
+         [get-stmt-type (-> (Option Symbol))]
+         [get-param-count (-> Integer)]
+         [get-param-typeids (-> (Listof Any))]
+         [get-result-dvecs (-> (Listof Any))]
+         [get-result-count (-> Integer)]
+         [get-result-typeids (-> (Listof Any))]
+         [check-owner (Symbol (Instance Connection<%>) Any -> True)]
+         [bind (Symbol (Listof Any) -> statement-binding)]
+         [get-param-types (-> (Listof TypeDesc))]
+         [get-result-types (-> (Listof TypeDesc))]))

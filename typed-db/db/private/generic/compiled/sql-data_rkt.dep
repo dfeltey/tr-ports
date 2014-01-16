@@ -1,0 +1,1 @@
+("5.90.0.10" ("04f3f5d05164a0216774639ccb092934808eea35" . "f4922f7665019889db93d63622e04ece58e40a41") (collects #"racket" #"serialize.rkt") (collects #"data" #"bit-vector.rkt") (collects #"racket" #"base.rkt") (collects #"racket" #"runtime-config.rkt"))
